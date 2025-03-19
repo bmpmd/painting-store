@@ -1,7 +1,17 @@
 <div class="container">
     <h2>Our Finest Collection</h2>
+    <mat-form-field>
+        <input type="text" matInput placeholder="search..." (keyup)="applyFilter($event)">
+    </mat-form-field>
+    <mat-form-field> 
+        <mat-select (selectionChange)="sortProducts($event.value)">
+            <mat-option value="lowToHigh">Price: Low to High</mat-option>
+            <mat-option value="highToLow">Price: High to Low</mat-option>
+            <mat-option value="alphabetical">Alphabetical (A-Z)</mat-option>
+        </mat-select>
+    </mat-form-field>
   <div fxLayout="row wrap" fxLayoutGap="50px grid">
-    <div *ngFor="let prod of products">
+    <div *ngFor="let prod of filteredProducts">
       <mat-card (click)="addToCart(prod)" class="product-card">
         <img mat-card-image src="assets/images/{{ prod.image_url }}" />
         <mat-card-content>

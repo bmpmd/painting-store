@@ -13,6 +13,8 @@ export class ProductListComponent implements OnInit{
 
   // prop to show products
   products:Product[] = []
+  filteredProducts:Product[] = [] 
+  sortOrder = ''
 
   //inject 
   constructor(private productService: ProductService,
@@ -25,6 +27,7 @@ export class ProductListComponent implements OnInit{
     this.productService.getProducts().subscribe(
       data => {
         this.products = data
+        this.filteredProducts = data
       }
     )
       
@@ -45,6 +48,37 @@ export class ProductListComponent implements OnInit{
     })
 
 
+  }
+
+  applyFilter(event: Event){
+    //grab search term from event, happens each keypress
+    let searchTerm = (event.target as HTMLInputElement).value
+    searchTerm = searchTerm.toLowerCase()
+
+    //filter products
+    this.filteredProducts = this.products.filter(
+      product => product.name.toLowerCase().includes(searchTerm)
+    )
+
+    //apply current sort method 
+    this.sortProducts(this.sortOrder)
+
+  }
+
+  sortProducts(value:string){
+    this.sortOrder = value;
+
+    if(this.sortOrder === "lowToHigh"){
+      this.filteredProducts.sort((a, b) => a.price - b.price)
+
+    }
+    else if (this.sortOrder=== "highToLow"){
+      this.filteredProducts.sort((a,b) => b.price - a.price)
+    }
+    else if(this.sortOrder === 'alphabetical'){
+      this.filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
+    }
+   
   }
   
 
