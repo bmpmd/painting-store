@@ -24,6 +24,12 @@ export class ProductListComponent implements OnInit{
     )
       
   }
+
+  addToCart(product:Product):void{
+    //when async done, call snackbar 
+    
+
+  }
   
 
 }

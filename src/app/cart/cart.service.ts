@@ -23,4 +23,9 @@ export class CartService {
   clearCart(): Observable<void>{
     return this.httpClient.delete<void>(this.apiurl)
   }
+
+  checkout(products: Product[]):Observable<void>{
+    return this.httpClient.post<void>(environment.apiUrl + "/checkout", products )
+  }
+
 }
