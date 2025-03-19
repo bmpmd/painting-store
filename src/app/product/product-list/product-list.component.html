@@ -2,7 +2,7 @@
     <h2>Our Finest Collection</h2>
   <div fxLayout="row wrap" fxLayoutGap="50px grid">
     <div *ngFor="let prod of products">
-      <mat-card class="product-card">
+      <mat-card (click)="addToCart(prod)" class="product-card">
         <img mat-card-image src="assets/images/{{ prod.image_url }}" />
         <mat-card-content>
           <mat-card-title>{{ prod.name }}</mat-card-title>

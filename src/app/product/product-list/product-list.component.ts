@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../product.service';
+import { CartService } from '../../cart/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +15,10 @@ export class ProductListComponent implements OnInit{
   products:Product[] = []
 
   //inject 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService,
+    private cartService:CartService,
+    private snackbar:MatSnackBar
+  ){}
 
   //fill prop with products
   ngOnInit(): void {
@@ -27,7 +32,18 @@ export class ProductListComponent implements OnInit{
 
   addToCart(product:Product):void{
     //when async done, call snackbar 
-    
+    this.cartService.addToCart(product).subscribe({
+      next: ()=>{
+        this.snackbar.open("Added product to cart!", "", {
+          duration: 2000,
+          horizontalPosition: "right",
+          verticalPosition: "top"
+        
+        })
+
+      }
+    })
+
 
   }
   
