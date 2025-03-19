@@ -10,3 +10,7 @@ mat-card:hover {
 mat-card {
     transition: 0.3s;
 }
+
+.dropdown {
+    margin-left: 20px;
+}

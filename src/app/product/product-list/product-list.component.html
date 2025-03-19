@@ -1,12 +1,12 @@
 <div class="container">
     <h2>Our Finest Collection</h2>
-    <mat-form-field>
+    <mat-form-field >
         <input type="text" matInput placeholder="search..." (keyup)="applyFilter($event)">
     </mat-form-field>
-    <mat-form-field> 
-        <mat-select (selectionChange)="sortProducts($event.value)">
-            <mat-option value="lowToHigh">Price: Low to High</mat-option>
-            <mat-option value="highToLow">Price: High to Low</mat-option>
+    <mat-form-field class="dropdown" > 
+        <mat-select  (selectionChange)="sortProducts($event.value)" placeholder="Sort by...">
+            <mat-option  value="lowToHigh">Price: Low to High</mat-option>
+            <mat-option  value="highToLow">Price: High to Low</mat-option>
             <mat-option value="alphabetical">Alphabetical (A-Z)</mat-option>
         </mat-select>
     </mat-form-field>
